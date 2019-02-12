@@ -4,23 +4,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.view.View
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.ApolloCallback
 import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.api.Operation
 import com.apollographql.apollo.api.Response
-import com.apollographql.apollo.api.ResponseField
-import com.apollographql.apollo.cache.normalized.CacheKey
-import com.apollographql.apollo.cache.normalized.CacheKeyResolver
-import com.apollographql.apollo.cache.normalized.lru.EvictionPolicy
-import com.apollographql.apollo.cache.normalized.lru.LruNormalizedCacheFactory
-import com.apollographql.apollo.cache.normalized.sql.ApolloSqlHelper
 import com.apollographql.apollo.exception.ApolloException
 import com.apollographql.apollo.fetcher.ApolloResponseFetchers
-import com.apollographql.apollo.subscription.WebSocketSubscriptionTransport
-import com.example.apollotest.TestQuery
 import com.example.apollotest.type.FeedType
 import okhttp3.OkHttpClient
 
@@ -41,11 +30,11 @@ class MainActivity : AppCompatActivity() {
 
         val dataCallback = ApolloCallback(object : ApolloCall.Callback<TestQuery.Data>() {
             override fun onResponse(response: Response<TestQuery.Data>) {
-                print("VSENORM - ")
+                print("Norm - ")
             }
 
             override fun onFailure(e: ApolloException) {
-               print("SHOTO NIE POSZLO - ")
+               print("Nie norm - ")
             }
         }, uiHandler)
 
