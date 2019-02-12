@@ -1,9 +1,9 @@
 package com.example.apollotest
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.support.v7.app.AppCompatActivity
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.ApolloCallback
 import com.apollographql.apollo.ApolloClient
@@ -14,7 +14,7 @@ import com.example.apollotest.type.FeedType
 import okhttp3.OkHttpClient
 
 class MainActivity : AppCompatActivity() {
-//    fun ApolloClient(): ApolloClient? {
+    //    fun ApolloClient(): ApolloClient? {
 //        return apolloClient
 //    }
     private var apolloClient: ApolloClient? = null
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(e: ApolloException) {
-               print("Nie norm - ")
+                print("Nie norm - ")
             }
         }, uiHandler)
 
