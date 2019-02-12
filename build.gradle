@@ -24,7 +24,7 @@ allprojects {
     }
 }
 tasks.whenTaskAdded {task ->
-    if(task.name.contains("installApolloCodegen")) {
+    if(task.name.contains("apollo")) {
         task.enabled = false
     }
 }

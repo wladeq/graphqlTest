@@ -20,7 +20,7 @@ import com.apollographql.apollo.cache.normalized.sql.ApolloSqlHelper
 import com.apollographql.apollo.exception.ApolloException
 import com.apollographql.apollo.fetcher.ApolloResponseFetchers
 import com.apollographql.apollo.subscription.WebSocketSubscriptionTransport
-import com.example.apollotest.FeedQuery
+import com.example.apollotest.TestQuery
 import com.example.apollotest.type.FeedType
 import okhttp3.OkHttpClient
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 //        return apolloClient
 //    }
     private var apolloClient: ApolloClient? = null
-    internal var githuntFeedCall: ApolloCall<FeedQuery.Data>? = null
+    internal var githuntFeedCall: ApolloCall<TestQuery.Data>? = null
     internal var uiHandler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,13 +39,13 @@ class MainActivity : AppCompatActivity() {
                 .build()
         val FEED_SIZE = 20
 
-        val dataCallback = ApolloCallback(object : ApolloCall.Callback<FeedQuery.Data>() {
-            override fun onResponse(response: Response<FeedQuery.Data>) {
-                Log.wtf("VSENORM - ", response.toString())
+        val dataCallback = ApolloCallback(object : ApolloCall.Callback<TestQuery.Data>() {
+            override fun onResponse(response: Response<TestQuery.Data>) {
+                print("VSENORM - ")
             }
 
             override fun onFailure(e: ApolloException) {
-                Log.wtf("SHOTO NIE POSZLO - ", e)
+               print("SHOTO NIE POSZLO - ")
             }
         }, uiHandler)
 
@@ -55,9 +55,14 @@ class MainActivity : AppCompatActivity() {
                 .okHttpClient(okHttpClient)
                 //.subscriptionTransportFactory(WebSocketSubscriptionTransport.Factory(SUBSCRIPTION_BASE_URL, okHttpClient))
                 .build()
+
         var apolloClientCopy = apolloClient
-        val feedQuery: FeedQuery = FeedQuery.builder()
+
+        val feedQuery: TestQuery = TestQuery.builder()
+                .limit(FEED_SIZE)
+                .type(FeedType.HOT)
                 .build()
+
         githuntFeedCall = apolloClientCopy?.query(feedQuery)
                 ?.responseFetcher(ApolloResponseFetchers.NETWORK_FIRST)
         githuntFeedCall?.enqueue(dataCallback)
@@ -66,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
 
-        private val BASE_URL = "http://172.20.10.25:4000"
+        private val BASE_URL = "https://api.githunt.com/graphql"
         //private val SUBSCRIPTION_BASE_URL = "wss://api.githunt.com/subscriptions"
 
     }
