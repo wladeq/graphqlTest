@@ -24,10 +24,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val okHttpClient = OkHttpClient.Builder()
                 .build()
         val FEED_SIZE = 20
-
+//        doAsync {
+//            val a = Test()
+//            a.fun1()
+//        }
         val dataCallback = ApolloCallback(object : ApolloCall.Callback<TestQuery.Data>() {
             override fun onResponse(response: Response<TestQuery.Data>) {
                 print("Norm - ")
@@ -55,13 +59,14 @@ class MainActivity : AppCompatActivity() {
         githuntFeedCall = apolloClientCopy?.query(feedQuery)
                 ?.responseFetcher(ApolloResponseFetchers.NETWORK_FIRST)
         githuntFeedCall?.enqueue(dataCallback)
-    }
 
+    }
 
     companion object {
 
-        private val BASE_URL = "https://api.githunt.com/graphql"
+        private val BASE_URL = "http://localhost:4000/"
         //private val SUBSCRIPTION_BASE_URL = "wss://api.githunt.com/subscriptions"
 
     }
+
 }

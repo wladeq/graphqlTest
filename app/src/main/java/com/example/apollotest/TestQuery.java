@@ -32,34 +32,40 @@ import javax.annotation.Generated;
 public final class TestQuery implements Query<TestQuery.Data, TestQuery.Data, TestQuery.Variables> {
   public static final String OPERATION_ID = "0b6ca4c466e35ce114dddcd850c23a00befaab139227758aed1df696a938ffa1";
 
-  public static final String QUERY_DOCUMENT = "query TestQuery($type: FeedType!, $limit: Int!) {\n"
-      + "  feedEntries: feed(type: $type, limit: $limit) {\n"
-      + "    __typename\n"
-      + "    id\n"
-      + "    repository {\n"
-      + "      __typename\n"
-      + "      ...RepositoryFragment\n"
-      + "    }\n"
-      + "    postedBy {\n"
-      + "      __typename\n"
-      + "      login\n"
-      + "    }\n"
-      + "  }\n"
-      + "}\n"
-      + "fragment RepositoryFragment on Repository {\n"
-      + "  __typename\n"
-      + "  name\n"
-      + "  full_name\n"
-      + "  owner {\n"
-      + "    __typename\n"
-      + "    login\n"
-      + "  }\n"
-      + "}";
+//  public static final String QUERY_DOCUMENT = "query TestQuery($type: FeedType!, $limit: Int!) {\n"
+//      + "  feedEntries: feed(type: $type, limit: $limit) {\n"
+//      + "    __typename\n"
+//      + "    id\n"
+//      + "    repository {\n"
+//      + "      __typename\n"
+//      + "      ...RepositoryFragment\n"
+//      + "    }\n"
+//      + "    postedBy {\n"
+//      + "      __typename\n"
+//      + "      login\n"
+//      + "    }\n"
+//      + "  }\n"
+//      + "}\n"
+//      + "fragment RepositoryFragment on Repository {\n"
+//      + "  __typename\n"
+//      + "  name\n"
+//      + "  full_name\n"
+//      + "  owner {\n"
+//      + "    __typename\n"
+//      + "    login\n"
+//      + "  }\n"
+//      + "}";
+  public static final String QUERY_DOCUMENT = "query{\n"
+      + "feed{\n"
+      + "id,\n"
+      + "title\n"
+      + " }\n"
+      + "}\n";
 
   public static final OperationName OPERATION_NAME = new OperationName() {
     @Override
     public String name() {
-      return "TestQuery";
+      return "";
     }
   };
 
