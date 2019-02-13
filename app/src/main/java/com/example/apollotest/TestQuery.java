@@ -56,9 +56,10 @@ public final class TestQuery implements Query<TestQuery.Data, TestQuery.Data, Te
 //      + "  }\n"
 //      + "}";
   public static final String QUERY_DOCUMENT = "query{\n"
-      + "feed{\n"
-      + "id,\n"
-      + "title\n"
+      + "__schema{\n"
+      + "types{\n"
+      + "kind\n"
+      + "  }\n"
       + " }\n"
       + "}\n";
 

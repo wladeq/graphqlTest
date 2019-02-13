@@ -12,6 +12,7 @@ import com.apollographql.apollo.exception.ApolloException
 import com.apollographql.apollo.fetcher.ApolloResponseFetchers
 import com.example.apollotest.type.FeedType
 import okhttp3.OkHttpClient
+import org.jetbrains.anko.doAsync
 
 class MainActivity : AppCompatActivity() {
     //    fun ApolloClient(): ApolloClient? {
@@ -28,10 +29,10 @@ class MainActivity : AppCompatActivity() {
         val okHttpClient = OkHttpClient.Builder()
                 .build()
         val FEED_SIZE = 20
-//        doAsync {
-//            val a = Test()
-//            a.fun1()
-//        }
+        doAsync {
+            val b = Test().fun2()
+            print(b)
+        }
         val dataCallback = ApolloCallback(object : ApolloCall.Callback<TestQuery.Data>() {
             override fun onResponse(response: Response<TestQuery.Data>) {
                 print("Norm - ")
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
 
-        private val BASE_URL = "http://localhost:4000/"
+        private val BASE_URL = "https://eu1.prisma.sh/jaroslavi-b7c2e1/apollo/dev"
         //private val SUBSCRIPTION_BASE_URL = "wss://api.githunt.com/subscriptions"
 
     }
