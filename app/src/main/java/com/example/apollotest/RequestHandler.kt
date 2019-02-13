@@ -28,15 +28,14 @@ class RequestHandler {
 
     fun makeRequest(): String {
         val requestBody = RequestBody.create(MEDIA_TYPE, httpRequestBody())
-        var request = Request.Builder()
+        val request = Request.Builder()
                 .url(BASE_URL)
                 .post(requestBody)
                 .header(HEADER_ACCEPT_TYPE, ACCEPT_TYPE)
                 .header(HEADER_CONTENT_TYPE, CONTENT_TYPE)
                 .build()
 
-        val response = client.newCall(request).execute()
-        return response.body()!!.string()
+        return client.newCall(request).execute().body()!!.string()
     }
 
     //Ten jsonWriter jest zrobiony tak samo, jak to robi Apollo w klasie:
