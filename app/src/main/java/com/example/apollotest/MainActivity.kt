@@ -33,10 +33,4 @@ class MainActivity : AppCompatActivity() {
                 TestQuery.builder().build()).enqueue(dataCallback)
     }
 
-
-    companion object {
-
-        private val BASE_URL = "https://eu1.prisma.sh/jaroslavi-b7c2e1/apollo/dev"
-
-    }
 }
